@@ -1,0 +1,37 @@
+server:
+  port: 8180
+spring:
+  application:
+    name: identity-service
+  profiles:
+    active: dev
+  datasource:
+    url: "jdbc:postgresql://localhost:5432/suser"
+    driverClassName: org.postgresql.Driver
+    username: postgres
+    password: 12345Thanh
+    hikari:
+      leak-detection-threshold: 20000
+      max-lifetime: 300000
+      idle-timeout: 200000
+      maximum-pool-size: 40
+      minimum-idle: 25
+
+  jpa:
+      properties:
+        hibernate.jdbc.time_zone: UTC
+      hibernate:
+        ddl-auto: update
+      show-sql: true
+      open-in-view: false
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://localhost:8761/eureka
+
+app:
+  auth:
+    tokenSecret: 9a02115a835ee03d5fb83cd8a468ea33e4090aaa2c87f53c9fa54512b5ef4db8dc656c82a315fa0c785c08b0134716b81d6cd0153d2928d4aef64524ca18e4e7dabad510423
+    tokenExpirationMsec: 7200000
+    refreshTokenSecret: cf427568e2724d5d819518cc8bcbd0c49a02115a835ee03d5fb83cd8a468ea33e4090aaa2c87f53c9fa54512b5ef4db8dc656c82a315fa0c785c08b0134716b81d6cd0153d2
+    refreshTokenExpirationMsec: 2592000000

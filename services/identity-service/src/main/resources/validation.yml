@@ -1,0 +1,178 @@
+#Sign up
+signup_client_request:
+  name:
+    size:
+      code: VAL.SIP0101
+      message: Name size must be between 1 and 100!
+  first_name:
+    size:
+      code: VAL.SIP0102
+      message: Name size must be between 1 and 100!
+  last_name:
+    size:
+      code: VAL.SIP0103
+      message: Last name must be between 1 and 100!
+  email:
+    not_blank:
+      code: VAL.SIP0201
+      message: Email must not be blank!
+    email:
+      code: VAL.SIP0202
+      message: Email must be a well-formed email address!
+  password:
+    not_blank:
+      code: VAL.SIP0301
+      message: Password must not be blank!
+    pattern:
+      code: VAL.SIP0302
+      message: Password has at least 8 characters, maximum 32 characters, containing at least 1 uppercase letter, 1 lowercase letter, 1 numeric character!
+  confirmation_password:
+    not_blank:
+      code: VAL.SIP0401
+      message: Confirmation password must not be blank!
+    pattern:
+      code: VAL.SIP0402
+      message: Confirmation password has at least 8 characters, maximum 32 characters, containing at least 1 uppercase letter, 1 lowercase letter, 1 numeric character!
+  role:
+    not_blank:
+      code: VAL.SIP0501
+      message: Role must not be blank!
+    pattern:
+      code: VAL.SIP0501
+      message: Role must match DEVELOPER|COMMUNICATOR|BSE!
+  language_id:
+    not_null:
+      code: VAL.SIP0601
+      message: Language must not be null!
+#Sign up
+signup_develop_request:
+  first_name:
+    not_blank:
+      code: VAL.SIP0101
+      message: First name must not be blank!
+    size:
+      code: VAL.SIP0102
+      message: Name size must be between 1 and 100!
+  last_name:
+    not_blank:
+      code: VAL.SIP0103
+      message: Last name must not be blank!
+    size:
+      code: VAL.SIP0104
+      message: Last name must be between 1 and 100!
+  email:
+    not_blank:
+      code: VAL.SIP0201
+      message: Email must not be blank!
+    email:
+      code: VAL.SIP0202
+      message: Email must be a well-formed email address!
+  password:
+    not_blank:
+      code: VAL.SIP0301
+      message: Password must not be blank!
+    pattern:
+      code: VAL.SIP0302
+      message: Password has at least 8 characters, maximum 32 characters, containing at least 1 uppercase letter, 1 lowercase letter, 1 numeric character!
+  confirmation_password:
+    not_blank:
+      code: VAL.SIP0401
+      message: Confirmation password must not be blank!
+    pattern:
+      code: VAL.SIP0402
+      message: Confirmation password has at least 8 characters, maximum 32 characters, containing at least 1 uppercase letter, 1 lowercase letter, 1 numeric character!
+  language_id:
+    not_null:
+      code: VAL.SIP0601
+      message: Language must not be null!
+#Sign in
+password_login_request:
+  email:
+    not_blank:
+      code: VAL.SIG0101
+      message: Email must not be blank!
+    email:
+      code: VAL.SIG0102
+      message: Email must be a well-formed email address!
+  password:
+    not_blank:
+      code: VAL.SIG0201
+      message: Password must not be blank!
+    pattern:
+      code: VAL.SIG0202
+      message: Password has at least 8 characters, maximum 32 characters, containing at least 1 uppercase letter, 1 lowercase letter, 1 numeric character!
+#Sign in google
+sign_in_google_request:
+  access_token:
+    not_blank:
+      code: VAL.SNG0101
+      message: Access token must not be blank!
+#Select role
+select_role_request:
+  role:
+    not_blank:
+      code: VAL.STR0101
+      message: Role must not be blank!
+    pattern:
+      code: VAL.STR0102
+      message: Role must match COMPANY|DEVELOPER|COMMUNICATOR|BSE!
+#Refresh token
+refresh_token_request:
+  refresh_token:
+    not_blank:
+      code: VAL.RFK0101
+      message: Refresh token must not be blank!
+#Change password
+change_password_request:
+  old_password:
+    not_blank:
+      code: VAL.CPD0101
+      message: Old password must not be blank!
+    pattern:
+      code: VAL.CPD0102
+      message: Old password has at least 8 characters, maximum 32 characters, containing at least 1 uppercase letter, 1 lowercase letter, 1 numeric character!
+  new_password:
+    not_blank:
+      code: VAL.CPD0201
+      message: New password must not be blank!
+    pattern:
+      code: VAL.CPD0202
+      message: New password has at least 8 characters, maximum 32 characters, containing at least 1 uppercase letter, 1 lowercase letter, 1 numeric character!
+  confirm_new_password:
+    not_blank:
+      code: VAL.CPD0301
+      message: Confirm new password must not be blank!
+    pattern:
+      code: VAL.CPD0302
+      message: Confirm new password has at least 8 characters, maximum 32 characters, containing at least 1 uppercase letter, 1 lowercase letter, 1 numeric character!
+
+#Forgot password
+forgot_password_request:
+  email:
+    not_blank:
+      code: VAL.FPD0101
+      message: Email must not be blank!
+    email:
+      code: VAL.FPD0102
+      message: Email must be a well-formed email address!
+
+#Reset password
+reset_password_request:
+  confirm_token:
+    not_null:
+      code: VAL.RPD0101
+      message: Confirm token must not be null!
+  password:
+    not_blank:
+      code: VAL.RPD0201
+      message: Password must not be blank!
+    pattern:
+      code: VAL.RPD0202
+      message: Password has at least 8 characters, maximum 32 characters, containing at least 1 uppercase letter, 1 lowercase letter, 1 numeric character!
+  confirm_password:
+    not_blank:
+      code: VAL.RPD0301
+      message: Confirm password must not be blank!
+    pattern:
+      code: VAL.RPD0302
+      message: Confirm password has at least 8 characters, maximum 32 characters, containing at least 1 uppercase letter, 1 lowercase letter, 1 numeric character!

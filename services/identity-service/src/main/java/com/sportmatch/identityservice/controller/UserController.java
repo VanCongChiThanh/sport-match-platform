@@ -11,8 +11,8 @@ import com.sportmatch.identityservice.entity.enums.AuthProvider;
 import com.sportmatch.identityservice.entity.enums.Role;
 import com.sportmatch.identityservice.exception.BadRequestException;
 import com.sportmatch.identityservice.exception.NotFoundException;
-import com.sportmatch.identityservice.payload.general.ResponseDataAPI;
-import com.sportmatch.identityservice.payload.request.*;
+import com.sportmatch.identityservice.dto.general.ResponseDataAPI;
+import com.sportmatch.identityservice.dto.request.*;
 import com.sportmatch.identityservice.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
@@ -37,15 +37,15 @@ public class UserController {
 
   @PostMapping("/user/sign-up")
   public ResponseEntity<ResponseDataAPI> signUp(@Valid @RequestBody SignUpRequest signUpRequest) {
-    if (!signUpRequest.getPassword().equals(signUpRequest.getPasswordConfirmation())) {
+    if (!signUpRequest.password().equals(signUpRequest.passwordConfirmation())) {
       throw new BadRequestException(MessageConstant.PASSWORD_FIELDS_MUST_MATCH);
     }
         userService.registerUser(
-            signUpRequest.getFirstname(),
-            signUpRequest.getLastname(),
-            signUpRequest.getEmail(),
-            signUpRequest.getPassword(),
-            Role.valueOf(CommonConstant.ROLE_PREFIX.concat(signUpRequest.getRole())));
+            signUpRequest.firstname(),
+            signUpRequest.lastname(),
+            signUpRequest.email(),
+            signUpRequest.password(),
+            Role.valueOf(CommonConstant.ROLE_PREFIX.concat(signUpRequest.role())));
     return ResponseEntity.ok(ResponseDataAPI.successWithoutMetaAndData());
   }
 
@@ -120,7 +120,7 @@ public class UserController {
   /**
    * Resend mail active account
    *
-   * @param resendMailActiveRequest {@link com.sportmatch.identityservice.payload.request.ResendMailActiveRequest}
+   * @param resendMailActiveRequest {@link com.sportmatch.identityservice.dto.request.ResendMailActiveRequest}
    * @return ResponseDataAPI
    */
   @PostMapping("/user/resend-mail")
@@ -128,7 +128,7 @@ public class UserController {
       @Valid @RequestBody ResendMailActiveRequest resendMailActiveRequest) {
     User user =
         userService
-            .findByEmail(resendMailActiveRequest.getEmail())
+            .findByEmail(resendMailActiveRequest.email())
             .orElseThrow(() -> new NotFoundException(MessageConstant.USER_NOT_FOUND));
 //    UserInfo userInfo=userInfoService.getUserInfoByUserId(user.getId());
 //    userService.resendMailActiveRequest(user, userInfo.getFirstName(), userInfo.getLastName());

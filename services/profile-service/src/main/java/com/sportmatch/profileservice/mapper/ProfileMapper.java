@@ -1,7 +1,7 @@
 package com.sportmatch.profileservice.mapper;
 
-import com.sportmatch.profileservice.dto.ProfileRequest;
-import com.sportmatch.profileservice.dto.ProfileResponse;
+import com.sportmatch.profileservice.dto.request.ProfileRequest;
+import com.sportmatch.profileservice.dto.response.ProfileResponse;
 import com.sportmatch.profileservice.entity.Profile;
 import org.mapstruct.*;
 

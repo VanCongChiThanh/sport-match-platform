@@ -10,11 +10,11 @@ import com.sportmatch.identityservice.entity.enums.Role;
 import com.sportmatch.identityservice.exception.BadRequestException;
 import com.sportmatch.identityservice.exception.ForbiddenException;
 import com.sportmatch.identityservice.exception.UnauthorizedException;
-import com.sportmatch.identityservice.payload.general.ResponseDataAPI;
-import com.sportmatch.identityservice.payload.request.LoginRequest;
-import com.sportmatch.identityservice.payload.request.RefreshTokenRequest;
-import com.sportmatch.identityservice.payload.request.SignOutAllRequest;
-import com.sportmatch.identityservice.payload.response.Oauth2Info;
+import com.sportmatch.identityservice.dto.general.ResponseDataAPI;
+import com.sportmatch.identityservice.dto.request.LoginRequest;
+import com.sportmatch.identityservice.dto.request.RefreshTokenRequest;
+import com.sportmatch.identityservice.dto.request.SignOutAllRequest;
+import com.sportmatch.identityservice.dto.response.Oauth2Info;
 import com.sportmatch.identityservice.service.Oauth2LoginService;
 import com.sportmatch.identityservice.service.OauthAccessTokenService;
 import com.sportmatch.identityservice.service.UserService;
@@ -60,7 +60,7 @@ public class AuthController {
       Authentication authentication =
           authenticationManager.authenticate(
               new UsernamePasswordAuthenticationToken(
-                  loginRequest.getEmail().toLowerCase(), loginRequest.getPassword()));
+                  loginRequest.email().toLowerCase(), loginRequest.password()));
       SecurityContextHolder.getContext().setAuthentication(authentication);
       UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
       if (userPrincipal.getRole().equals(Role.ROLE_ADMIN)) {
@@ -75,7 +75,7 @@ public class AuthController {
     } catch (InternalAuthenticationServiceException e) {
       throw new UnauthorizedException(MessageConstant.ACCOUNT_NOT_EXISTS);
     } catch (DisabledException e) {
-      Optional<User> optional = userService.findByEmail(loginRequest.getEmail());
+      Optional<User> optional = userService.findByEmail(loginRequest.email());
       if (optional.isPresent() && optional.get().getConfirmedAt() != null) {
         throw new UnauthorizedException(MessageConstant.ACCOUNT_BLOCKED);
       } else {
@@ -98,7 +98,7 @@ public class AuthController {
       Authentication authentication =
           authenticationManager.authenticate(
               new UsernamePasswordAuthenticationToken(
-                  loginRequest.getEmail().toLowerCase(), loginRequest.getPassword()));
+                  loginRequest.email().toLowerCase(), loginRequest.password()));
       SecurityContextHolder.getContext().setAuthentication(authentication);
       UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
       if (!userPrincipal.getRole().equals(Role.ROLE_ADMIN)) {
@@ -112,7 +112,7 @@ public class AuthController {
     } catch (InternalAuthenticationServiceException e) {
       throw new UnauthorizedException(MessageConstant.ACCOUNT_NOT_EXISTS);
     } catch (DisabledException e) {
-      Optional<User> optional = userService.findByEmail(loginRequest.getEmail());
+      Optional<User> optional = userService.findByEmail(loginRequest.email());
       if (optional.isPresent() && optional.get().getConfirmedAt() != null) {
         throw new UnauthorizedException(MessageConstant.ACCOUNT_BLOCKED);
       } else {
@@ -131,7 +131,7 @@ public class AuthController {
     AuthProvider authProvider= AuthProvider.valueOf(provider.toUpperCase());
     Oauth2Info info = oauth2LoginService.login(authProvider, code);
     User user=userService.registerUserOauth2(
-            info.getFirstName(),info.getLastName(), info.getEmail(), info.getAvatarUrl(), authProvider, info.getProviderId());
+            info.firstName(),info.lastName(), info.email(), info.avatarUrl(), authProvider, info.providerId());
     return ResponseEntity.ok(
         ResponseDataAPI.success(
             tokenProvider.createOauthAccessToken(
@@ -149,7 +149,7 @@ public class AuthController {
     return ResponseEntity.ok(
         ResponseDataAPI.success(
             tokenProvider.refreshTokenOauthAccessToken(
-                refreshTokenRequest.getRefreshToken(), false),
+                refreshTokenRequest.refreshToken(), false),
             null));
   }
 
@@ -164,7 +164,7 @@ public class AuthController {
       @Valid @RequestBody RefreshTokenRequest refreshTokenRequest) {
     return ResponseEntity.ok(
         ResponseDataAPI.success(
-            tokenProvider.refreshTokenOauthAccessToken(refreshTokenRequest.getRefreshToken(), true),
+            tokenProvider.refreshTokenOauthAccessToken(refreshTokenRequest.refreshToken(), true),
             null));
   }
 
@@ -195,14 +195,14 @@ public class AuthController {
           @Valid @RequestBody SignOutAllRequest signOutAllRequest, HttpServletRequest request) {
     String bearerToken = request.getHeader("Authorization");
     if (!StringUtils.hasText(bearerToken)) {
-      oauthAccessTokenService.revokeAll(null, signOutAllRequest.getEmail());
+      oauthAccessTokenService.revokeAll(null, signOutAllRequest.email());
       return ResponseEntity.ok(ResponseDataAPI.success(null, null));
     } else {
       if (bearerToken.startsWith("Bearer ")) {
         bearerToken = bearerToken.substring(7);
       }
       oauthAccessTokenService.revokeAll(
-          tokenProvider.getOauthAccessTokenFromToken(bearerToken), signOutAllRequest.getEmail());
+          tokenProvider.getOauthAccessTokenFromToken(bearerToken), signOutAllRequest.email());
     }
     return ResponseEntity.ok(ResponseDataAPI.success(null, null));
   }

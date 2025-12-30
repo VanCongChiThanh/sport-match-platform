@@ -2,7 +2,7 @@ package com.sportmatch.identityservice.service.impl;
 
 
 import com.sportmatch.identityservice.entity.enums.AuthProvider;
-import com.sportmatch.identityservice.payload.response.Oauth2Info;
+import com.sportmatch.identityservice.dto.response.Oauth2Info;
 import com.sportmatch.identityservice.service.Oauth2LoginStrategy;
 import org.springframework.stereotype.Service;
 

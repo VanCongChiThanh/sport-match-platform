@@ -9,7 +9,7 @@ import com.sportmatch.identityservice.entity.enums.AuthProvider;
 import com.sportmatch.identityservice.entity.enums.Role;
 import com.sportmatch.identityservice.exception.ForbiddenException;
 import com.sportmatch.identityservice.mapper.OauthAccessTokenMapper;
-import com.sportmatch.identityservice.payload.response.OauthAccessTokenResponse;
+import com.sportmatch.identityservice.dto.response.OauthAccessTokenResponse;
 import com.sportmatch.identityservice.service.OauthAccessTokenService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;

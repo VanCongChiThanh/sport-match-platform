@@ -1,7 +1,7 @@
 package com.sportmatch.profileservice.service;
 
-import com.sportmatch.profileservice.dto.ProfileRequest;
-import com.sportmatch.profileservice.dto.ProfileResponse;
+import com.sportmatch.profileservice.dto.request.ProfileRequest;
+import com.sportmatch.profileservice.dto.response.ProfileResponse;
 import com.sportmatch.profileservice.entity.Profile;
 import com.sportmatch.profileservice.exception.ProfileAlreadyExistsException;
 import com.sportmatch.profileservice.exception.ProfileNotFoundException;

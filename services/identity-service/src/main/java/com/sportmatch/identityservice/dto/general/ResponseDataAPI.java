@@ -1,4 +1,4 @@
-package com.sportmatch.identityservice.payload.general;
+package com.sportmatch.identityservice.dto.general;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.sportmatch.identityservice.constant.CommonConstant;

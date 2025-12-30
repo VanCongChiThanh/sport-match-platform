@@ -9,10 +9,10 @@ import com.sportmatch.identityservice.entity.enums.ActiveStatus;
 import com.sportmatch.identityservice.entity.enums.AuthProvider;
 import com.sportmatch.identityservice.entity.enums.Role;
 import com.sportmatch.identityservice.exception.*;
-import com.sportmatch.identityservice.payload.general.ResponseDataAPI;
-import com.sportmatch.identityservice.payload.request.ChangePasswordRequest;
-import com.sportmatch.identityservice.payload.request.ForgotPasswordRequest;
-import com.sportmatch.identityservice.payload.request.ResetPasswordRequest;
+import com.sportmatch.identityservice.dto.general.ResponseDataAPI;
+import com.sportmatch.identityservice.dto.request.ChangePasswordRequest;
+import com.sportmatch.identityservice.dto.request.ForgotPasswordRequest;
+import com.sportmatch.identityservice.dto.request.ResetPasswordRequest;
 import com.sportmatch.identityservice.repository.UserRepository;
 import com.sportmatch.identityservice.service.UserProviderService;
 import com.sportmatch.identityservice.service.UserService;
@@ -79,18 +79,18 @@ public class UserServiceImpl implements UserService {
   @Override
   public ResponseDataAPI changePassword(
           UUID userId, String oldPasswordHashed, ChangePasswordRequest req) {
-    if (oldPasswordHashed == null || !BCrypt.checkpw(req.getOldPassword(), oldPasswordHashed)) {
+    if (oldPasswordHashed == null || !BCrypt.checkpw(req.oldPassword(), oldPasswordHashed)) {
       throw new BadRequestException(MessageConstant.CHANGE_CREDENTIAL_NOT_CORRECT);
     }
-    if (!Objects.equals(req.getConfirmNewPassword(), req.getNewPassword())) {
+    if (!Objects.equals(req.confirmNewPassword() ,req.newPassword())) {
       throw new BadRequestException(MessageConstant.PASSWORD_FIELDS_MUST_MATCH);
     }
-    if (Objects.equals(req.getOldPassword(), req.getNewPassword())) {
+    if (Objects.equals(req.oldPassword(), req.newPassword())) {
       throw new BadRequestException(MessageConstant.NEW_PASSWORD_NOT_SAME_OLD_PASSWORD);
     }
     User user = findById(userId);
     try {
-      user.setPassword(passwordEncoder.encode(req.getNewPassword()));
+      user.setPassword(passwordEncoder.encode(req.newPassword()));
       userRepository.save(user);
     } catch (RuntimeException ex) {
       throw new InternalServerException(MessageConstant.CHANGE_CREDENTIAL_FAIL);
@@ -165,7 +165,7 @@ public class UserServiceImpl implements UserService {
   public ResponseDataAPI forgotPassword(ForgotPasswordRequest forgotPasswordRequest) {
     User user =
         userRepository
-            .findByEmail(forgotPasswordRequest.getEmail().toLowerCase())
+            .findByEmail(forgotPasswordRequest.email().toLowerCase())
             .orElseThrow(() -> new NotFoundException(MessageConstant.USER_NOT_FOUND));
 
     user.setResetPasswordToken(UUID.randomUUID());
@@ -179,19 +179,19 @@ public class UserServiceImpl implements UserService {
   @Override
   public ResponseDataAPI resetPassword(ResetPasswordRequest resetPasswordRequest) {
     if (!resetPasswordRequest
-        .getPassword()
-        .equals(resetPasswordRequest.getPasswordConfirmation())) {
+        .password()
+        .equals(resetPasswordRequest.passwordConfirmation())) {
       throw new BadRequestException(MessageConstant.PASSWORD_FIELDS_MUST_MATCH);
     }
     User user =
         userRepository
-            .findByEmail(resetPasswordRequest.getEmail())
+            .findByEmail(resetPasswordRequest.email())
             .orElseThrow(() -> new NotFoundException(MessageConstant.USER_NOT_FOUND));
     if (user.getResetPasswordToken() == null
-        || !user.getResetPasswordToken().equals(resetPasswordRequest.getResetPasswordToken())) {
+        || !user.getResetPasswordToken().equals(resetPasswordRequest.resetPasswordToken())) {
       throw new UnauthorizedException(MessageConstant.RESET_CREDENTIAL_FAIL);
     }
-    user.setPassword(passwordEncoder.encode(resetPasswordRequest.getPassword()));
+    user.setPassword(passwordEncoder.encode(resetPasswordRequest.password()));
     user.setResetPasswordToken(null);
     userRepository.save(user);
     return ResponseDataAPI.success(null, null);

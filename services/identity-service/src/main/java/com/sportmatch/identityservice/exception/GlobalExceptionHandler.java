@@ -3,8 +3,8 @@ package com.sportmatch.identityservice.exception;
 
 import com.sportmatch.identityservice.common.CommonFunction;
 import com.sportmatch.identityservice.constant.MessageConstant;
-import com.sportmatch.identityservice.payload.general.ResponseDataAPI;
-import com.sportmatch.identityservice.payload.response.ErrorResponse;
+import com.sportmatch.identityservice.dto.general.ResponseDataAPI;
+import com.sportmatch.identityservice.dto.response.ErrorResponse;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.NonNull;
 import org.springframework.http.HttpHeaders;

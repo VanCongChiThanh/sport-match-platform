@@ -1,4 +1,4 @@
-package com.sportmatch.profileservice.dto;
+package com.sportmatch.profileservice.dto.request;
 
 public record ProfileRequest(
         String username,

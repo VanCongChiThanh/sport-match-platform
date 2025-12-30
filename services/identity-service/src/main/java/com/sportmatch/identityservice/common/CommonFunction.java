@@ -1,7 +1,7 @@
 package com.sportmatch.identityservice.common;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sportmatch.identityservice.payload.response.ErrorResponse;
+import com.sportmatch.identityservice.dto.response.ErrorResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.passay.CharacterRule;
 import org.passay.EnglishCharacterData;

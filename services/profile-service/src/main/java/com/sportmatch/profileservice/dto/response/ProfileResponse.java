@@ -1,4 +1,4 @@
-package com.sportmatch.profileservice.dto;
+package com.sportmatch.profileservice.dto.response;
 
 import java.util.UUID;
 

@@ -2,7 +2,7 @@ package com.sportmatch.identityservice.mapper;
 
 import com.sportmatch.identityservice.config.SpringMapStructConfig;
 import com.sportmatch.identityservice.entity.OauthAccessToken;
-import com.sportmatch.identityservice.payload.response.OauthAccessTokenResponse;
+import com.sportmatch.identityservice.dto.response.OauthAccessTokenResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

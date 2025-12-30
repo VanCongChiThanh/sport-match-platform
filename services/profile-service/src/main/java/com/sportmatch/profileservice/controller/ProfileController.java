@@ -1,8 +1,8 @@
 package com.sportmatch.profileservice.controller;
 
+import com.sportmatch.profileservice.common.response.ResponseDataAPI;
 import com.sportmatch.profileservice.dto.request.ProfileRequest;
 import com.sportmatch.profileservice.dto.response.ProfileResponse;
-import com.sportmatch.profileservice.dto.general.ResponseDataAPI;
 import com.sportmatch.profileservice.service.ProfileService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

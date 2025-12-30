@@ -1,7 +1,7 @@
 package com.sportmatch.identityservice.controller;
 
 import com.sportmatch.identityservice.config.AppProperties;
-import com.sportmatch.identityservice.constant.MessageConstant;
+import com.sportmatch.identityservice.common.constant.MessageConstant;
 import com.sportmatch.identityservice.entity.OauthAccessToken;
 import com.sportmatch.identityservice.entity.User;
 import com.sportmatch.identityservice.entity.UserPrincipal;

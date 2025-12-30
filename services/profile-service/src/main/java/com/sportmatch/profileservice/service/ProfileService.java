@@ -1,5 +1,6 @@
 package com.sportmatch.profileservice.service;
 
+import com.sportmatch.profileservice.common.constant.MessageConstant;
 import com.sportmatch.profileservice.dto.request.ProfileRequest;
 import com.sportmatch.profileservice.dto.response.ProfileResponse;
 import com.sportmatch.profileservice.entity.Profile;
@@ -22,7 +23,7 @@ public class ProfileService {
     @Transactional(readOnly = true)
     public Profile getProfileById(UUID id) {
         return profileRepository.findById(id)
-                .orElseThrow(() -> new ProfileNotFoundException("Profile not found with id: " + id));
+                .orElseThrow(() -> new ProfileNotFoundException(MessageConstant.PROFILE_NOT_FOUND));
     }
 
     @Transactional(readOnly = true)
@@ -34,7 +35,7 @@ public class ProfileService {
     @Transactional
     public Profile createProfile(Profile profile) {
         if (profileRepository.existsByUsername(profile.getUsername())) {
-            throw new ProfileAlreadyExistsException("Username already taken: " + profile.getUsername());
+            throw new ProfileAlreadyExistsException(MessageConstant.USERNAME_ALREADY_TAKEN);
         }
         // send kafka event to match service to create a new profile
 

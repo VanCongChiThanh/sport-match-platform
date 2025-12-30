@@ -1,11 +1,11 @@
-package com.sportmatch.identityservice.endpoint;
+package com.sportmatch.identityservice.config;
 
 
-import com.sportmatch.identityservice.common.CommonFunction;
-import com.sportmatch.identityservice.constant.MessageConstant;
-import com.sportmatch.identityservice.dto.general.ResponseDataAPI;
-import com.sportmatch.identityservice.dto.response.ErrorResponse;
-import com.sportmatch.identityservice.utils.LogUtils;
+import com.sportmatch.identityservice.common.util.CommonFunction;
+import com.sportmatch.identityservice.common.constant.MessageConstant;
+import com.sportmatch.identityservice.common.response.ResponseDataAPI;
+import com.sportmatch.identityservice.common.response.ErrorResponse;
+import com.sportmatch.identityservice.common.util.LogUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;

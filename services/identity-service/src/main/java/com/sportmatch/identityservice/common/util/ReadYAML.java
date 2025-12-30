@@ -1,4 +1,4 @@
-package com.sportmatch.identityservice.common;
+package com.sportmatch.identityservice.common.util;
 
 import org.yaml.snakeyaml.Yaml;
 

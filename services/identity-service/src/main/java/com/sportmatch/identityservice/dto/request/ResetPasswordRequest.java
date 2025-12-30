@@ -2,7 +2,7 @@ package com.sportmatch.identityservice.dto.request;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
-import com.sportmatch.identityservice.constant.CommonConstant;
+import com.sportmatch.identityservice.common.constant.CommonConstant;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

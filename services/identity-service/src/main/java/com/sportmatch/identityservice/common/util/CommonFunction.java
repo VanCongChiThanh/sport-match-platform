@@ -1,7 +1,8 @@
-package com.sportmatch.identityservice.common;
+package com.sportmatch.identityservice.common.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sportmatch.identityservice.dto.response.ErrorResponse;
+import com.sportmatch.identityservice.common.response.ErrorResponse;
+import com.sportmatch.identityservice.common.enums.DateStyle;
 import lombok.extern.slf4j.Slf4j;
 import org.passay.CharacterRule;
 import org.passay.EnglishCharacterData;
@@ -135,7 +136,7 @@ public final class CommonFunction {
    * Convert time to string
    *
    * @param timestamp {@link Timestamp}
-   * @param dateStyle {@link com.pbl.elearning.common.domain.enums.DateStyle} Destination
+   * @param dateStyle {@link DateStyle} Destination
    * @return Time format
    */
   public static String formatDateToString(Timestamp timestamp, DateStyle dateStyle) {

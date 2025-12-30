@@ -2,8 +2,8 @@ package com.sportmatch.identityservice.controller;
 
 
 import com.sportmatch.identityservice.annotation.CurrentUser;
-import com.sportmatch.identityservice.constant.CommonConstant;
-import com.sportmatch.identityservice.constant.MessageConstant;
+import com.sportmatch.identityservice.common.constant.CommonConstant;
+import com.sportmatch.identityservice.common.constant.MessageConstant;
 import com.sportmatch.identityservice.entity.OauthAccessToken;
 import com.sportmatch.identityservice.entity.User;
 import com.sportmatch.identityservice.entity.UserPrincipal;
@@ -11,7 +11,7 @@ import com.sportmatch.identityservice.entity.enums.AuthProvider;
 import com.sportmatch.identityservice.entity.enums.Role;
 import com.sportmatch.identityservice.exception.BadRequestException;
 import com.sportmatch.identityservice.exception.NotFoundException;
-import com.sportmatch.identityservice.dto.general.ResponseDataAPI;
+import com.sportmatch.identityservice.common.response.ResponseDataAPI;
 import com.sportmatch.identityservice.dto.request.*;
 import com.sportmatch.identityservice.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;

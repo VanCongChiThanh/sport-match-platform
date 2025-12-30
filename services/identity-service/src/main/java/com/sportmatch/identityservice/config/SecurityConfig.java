@@ -1,6 +1,5 @@
 package com.sportmatch.identityservice.config;
 
-import com.sportmatch.identityservice.endpoint.RestAuthenticationEntryPoint;
 import com.sportmatch.identityservice.service.CustomUserDetailsService;
 import com.sportmatch.identityservice.token.TokenAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
@@ -85,9 +84,10 @@ public class SecurityConfig {
 
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setUserDetailsService(customUserDetailsService);
+        DaoAuthenticationProvider provider =
+                new DaoAuthenticationProvider(customUserDetailsService);
         provider.setPasswordEncoder(passwordEncoder());
         return provider;
     }
+
 }

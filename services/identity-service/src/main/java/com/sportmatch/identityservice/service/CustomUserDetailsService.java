@@ -2,7 +2,7 @@ package com.sportmatch.identityservice.service;
 
 
 
-import com.sportmatch.identityservice.constant.MessageConstant;
+import com.sportmatch.identityservice.common.constant.MessageConstant;
 import com.sportmatch.identityservice.entity.User;
 import com.sportmatch.identityservice.entity.UserPrincipal;
 import com.sportmatch.identityservice.exception.NotFoundException;

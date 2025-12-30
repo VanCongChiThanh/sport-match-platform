@@ -1,4 +1,4 @@
-package com.sportmatch.identityservice.dto.response;
+package com.sportmatch.identityservice.common.response;
 
 public record ErrorResponse(
         String code,

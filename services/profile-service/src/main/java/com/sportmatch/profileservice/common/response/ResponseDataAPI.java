@@ -1,7 +1,7 @@
-package com.sportmatch.identityservice.dto.general;
+package com.sportmatch.profileservice.common.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.sportmatch.identityservice.constant.CommonConstant;
+import com.sportmatch.identityservice.common.constant.CommonConstant;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

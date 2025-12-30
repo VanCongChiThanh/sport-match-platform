@@ -2,14 +2,14 @@ package com.sportmatch.identityservice.service.impl;
 
 
 
-import com.sportmatch.identityservice.common.CommonFunction;
-import com.sportmatch.identityservice.constant.MessageConstant;
+import com.sportmatch.identityservice.common.util.CommonFunction;
+import com.sportmatch.identityservice.common.constant.MessageConstant;
 import com.sportmatch.identityservice.entity.User;
 import com.sportmatch.identityservice.entity.enums.ActiveStatus;
 import com.sportmatch.identityservice.entity.enums.AuthProvider;
 import com.sportmatch.identityservice.entity.enums.Role;
 import com.sportmatch.identityservice.exception.*;
-import com.sportmatch.identityservice.dto.general.ResponseDataAPI;
+import com.sportmatch.identityservice.common.response.ResponseDataAPI;
 import com.sportmatch.identityservice.dto.request.ChangePasswordRequest;
 import com.sportmatch.identityservice.dto.request.ForgotPasswordRequest;
 import com.sportmatch.identityservice.dto.request.ResetPasswordRequest;

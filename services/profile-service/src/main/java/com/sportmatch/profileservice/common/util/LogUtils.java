@@ -1,4 +1,4 @@
-package com.sportmatch.identityservice.utils;
+package com.sportmatch.profileservice.common.util;
 
 import lombok.extern.slf4j.Slf4j;
 

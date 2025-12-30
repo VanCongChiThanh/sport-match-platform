@@ -1,4 +1,4 @@
-package com.sportmatch.identityservice.constant;
+package com.sportmatch.identityservice.common.constant;
 
 import java.util.UUID;
 

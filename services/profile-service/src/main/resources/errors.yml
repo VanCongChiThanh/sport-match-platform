@@ -1,0 +1,7 @@
+# Profile errors
+profile_not_found:
+  code: ERR.PRF_NF
+  message: "Profile not found"
+username_already_taken:
+    code: ERR.PRF_UT
+    message: "Username is already taken"

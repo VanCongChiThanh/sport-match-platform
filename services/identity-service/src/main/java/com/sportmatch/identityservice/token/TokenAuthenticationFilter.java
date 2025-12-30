@@ -1,13 +1,13 @@
 package com.sportmatch.identityservice.token;
 
 
-import com.sportmatch.identityservice.common.CommonFunction;
-import com.sportmatch.identityservice.constant.MessageConstant;
+import com.sportmatch.identityservice.common.util.CommonFunction;
+import com.sportmatch.identityservice.common.constant.MessageConstant;
 import com.sportmatch.identityservice.entity.UserPrincipal;
 import com.sportmatch.identityservice.exception.ForbiddenException;
-import com.sportmatch.identityservice.dto.general.ResponseDataAPI;
-import com.sportmatch.identityservice.dto.response.ErrorResponse;
-import com.sportmatch.identityservice.utils.LogUtils;
+import com.sportmatch.identityservice.common.response.ResponseDataAPI;
+import com.sportmatch.identityservice.common.response.ErrorResponse;
+import com.sportmatch.identityservice.common.util.LogUtils;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

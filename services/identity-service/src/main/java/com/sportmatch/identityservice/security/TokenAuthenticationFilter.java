@@ -1,8 +1,8 @@
-package com.sportmatch.identityservice.token;
+package com.sportmatch.identityservice.security;
 
 
 import com.sportmatch.identityservice.common.util.CommonFunction;
-import com.sportmatch.identityservice.common.constant.MessageConstant;
+import com.sportmatch.identityservice.common.constants.MessageConstant;
 import com.sportmatch.identityservice.entity.UserPrincipal;
 import com.sportmatch.identityservice.exception.ForbiddenException;
 import com.sportmatch.identityservice.common.response.ResponseDataAPI;

@@ -1,4 +1,4 @@
-package com.sportmatch.identityservice.common.constant;
+package com.sportmatch.identityservice.common.constants;
 
 public final class MessageConstant {
 

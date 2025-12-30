@@ -3,7 +3,7 @@ package com.sportmatch.identityservice.service.impl;
 
 
 import com.sportmatch.identityservice.common.util.CommonFunction;
-import com.sportmatch.identityservice.common.constant.MessageConstant;
+import com.sportmatch.identityservice.common.constants.MessageConstant;
 import com.sportmatch.identityservice.entity.User;
 import com.sportmatch.identityservice.entity.enums.ActiveStatus;
 import com.sportmatch.identityservice.entity.enums.AuthProvider;

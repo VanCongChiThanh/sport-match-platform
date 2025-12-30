@@ -1,7 +1,7 @@
 package com.sportmatch.identityservice.dto.request;
 
 
-import com.sportmatch.identityservice.common.constant.CommonConstant;
+import com.sportmatch.identityservice.common.constants.CommonConstant;
 import jakarta.validation.constraints.*;
 
 import java.util.UUID;

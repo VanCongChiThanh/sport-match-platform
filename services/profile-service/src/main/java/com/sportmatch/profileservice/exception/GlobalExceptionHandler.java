@@ -1,7 +1,7 @@
 package com.sportmatch.profileservice.exception;
 
 
-import com.sportmatch.profileservice.common.constant.MessageConstant;
+import com.sportmatch.profileservice.common.constants.MessageConstant;
 import com.sportmatch.profileservice.common.response.ErrorResponse;
 import com.sportmatch.profileservice.common.response.ResponseDataAPI;
 import com.sportmatch.profileservice.common.util.CommonFunction;

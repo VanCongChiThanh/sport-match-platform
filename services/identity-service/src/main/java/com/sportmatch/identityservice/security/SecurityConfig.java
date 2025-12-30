@@ -1,7 +1,6 @@
-package com.sportmatch.identityservice.config;
+package com.sportmatch.identityservice.security;
 
 import com.sportmatch.identityservice.service.CustomUserDetailsService;
-import com.sportmatch.identityservice.token.TokenAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -2,7 +2,7 @@ package com.sportmatch.identityservice.exception;
 
 
 import com.sportmatch.identityservice.common.util.CommonFunction;
-import com.sportmatch.identityservice.common.constant.MessageConstant;
+import com.sportmatch.identityservice.common.constants.MessageConstant;
 import com.sportmatch.identityservice.common.response.ResponseDataAPI;
 import com.sportmatch.identityservice.common.response.ErrorResponse;
 import jakarta.persistence.EntityNotFoundException;

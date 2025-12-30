@@ -1,7 +1,7 @@
 package com.sportmatch.identityservice.common.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.sportmatch.identityservice.common.constant.CommonConstant;
+import com.sportmatch.identityservice.common.constants.CommonConstant;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

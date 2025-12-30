@@ -1,4 +1,4 @@
-package com.sportmatch.profileservice.common.constant;
+package com.sportmatch.profileservice.common.constants;
 
 public final class MessageConstant {
   public static final String PROFILE_NOT_FOUND = "profile_not_found";

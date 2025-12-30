@@ -1,6 +1,6 @@
 package com.sportmatch.profileservice.service;
 
-import com.sportmatch.profileservice.common.constant.MessageConstant;
+import com.sportmatch.profileservice.common.constants.MessageConstant;
 import com.sportmatch.profileservice.dto.request.ProfileRequest;
 import com.sportmatch.profileservice.dto.response.ProfileResponse;
 import com.sportmatch.profileservice.entity.Profile;

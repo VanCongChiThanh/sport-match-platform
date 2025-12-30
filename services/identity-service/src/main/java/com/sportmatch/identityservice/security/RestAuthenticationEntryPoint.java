@@ -1,8 +1,8 @@
-package com.sportmatch.identityservice.config;
+package com.sportmatch.identityservice.security;
 
 
 import com.sportmatch.identityservice.common.util.CommonFunction;
-import com.sportmatch.identityservice.common.constant.MessageConstant;
+import com.sportmatch.identityservice.common.constants.MessageConstant;
 import com.sportmatch.identityservice.common.response.ResponseDataAPI;
 import com.sportmatch.identityservice.common.response.ErrorResponse;
 import com.sportmatch.identityservice.common.util.LogUtils;

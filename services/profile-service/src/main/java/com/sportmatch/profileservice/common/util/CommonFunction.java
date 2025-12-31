@@ -76,7 +76,7 @@ public final class CommonFunction {
    * @return String code
    */
   public static String generateCodeDigit(int length) {
-    List<CharacterRule> rules = Arrays.asList(new CharacterRule(EnglishCharacterData.Digit, 1));
+    List<CharacterRule> rules = List.of(new CharacterRule(EnglishCharacterData.Digit, 1));
 
     PasswordGenerator generator = new PasswordGenerator();
     return generator.generatePassword(length, rules);

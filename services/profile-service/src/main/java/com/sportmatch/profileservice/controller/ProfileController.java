@@ -1,6 +1,5 @@
 package com.sportmatch.profileservice.controller;
 
-import com.sportmatch.profileservice.common.response.ResponseDataAPI;
 import com.sportmatch.profileservice.dto.request.ProfileRequest;
 import com.sportmatch.profileservice.dto.response.ProfileResponse;
 import com.sportmatch.profileservice.service.ProfileService;
@@ -19,28 +18,22 @@ public class ProfileController {
     private final ProfileService profileService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<ResponseDataAPI> getById(@PathVariable UUID id) {
-        ProfileResponse profileResponse = profileService.getProfileResponseById(id);
-        return ResponseEntity.ok(
-                ResponseDataAPI.successWithoutMeta(profileResponse)
+    public ResponseEntity<ProfileResponse> getById(@PathVariable UUID id) {
+        return ResponseEntity.ok(profileService.getProfileResponseById(id)
         );
     }
 
     @PostMapping
-    public ResponseEntity<ResponseDataAPI> create(@RequestBody ProfileRequest request) {
-        ProfileResponse created = profileService.createProfileFromRequest(request);
-        return ResponseEntity.status(HttpStatus.CREATED).body(ResponseDataAPI.successWithoutMeta(created));
+    public ResponseEntity<ProfileResponse> create(@RequestBody ProfileRequest request) {
+        return ResponseEntity.status(HttpStatus.CREATED).body( profileService.createProfileFromRequest(request));
     }
 
     @PatchMapping("/profiles/{id}")
-    public ResponseEntity<ResponseDataAPI> updateProfile(
+    public ResponseEntity<ProfileResponse> updateProfile(
             @PathVariable UUID id,
             @RequestBody ProfileRequest request
     ) {
-        ProfileResponse updated = profileService.updateProfileFromRequest(id, request);
-        return ResponseEntity.ok(
-                ResponseDataAPI.successWithoutMeta(updated)
-        );
+        return ResponseEntity.ok(profileService.updateProfileFromRequest(id, request));
     }
 
 }

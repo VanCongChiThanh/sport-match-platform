@@ -35,7 +35,7 @@ public class ProfileService {
     @Transactional
     public Profile createProfile(Profile profile) {
         if (profileRepository.existsByUsername(profile.getUsername())) {
-            throw new ProfileAlreadyExistsException(MessageConstant.USERNAME_ALREADY_TAKEN);
+            throw new ProfileAlreadyExistsException(MessageConstant.PROFILE_ALREADY_EXISTS);
         }
         // send kafka event to match service to create a new profile
 

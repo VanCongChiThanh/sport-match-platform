@@ -1,6 +1,6 @@
 package com.sportmatch.profileservice.repository;
 
-import com.sportmatch.profileservice.entity.Profile;
+import com.sportmatch.profileservice.model.Profile;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

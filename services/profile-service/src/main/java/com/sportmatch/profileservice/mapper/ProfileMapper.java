@@ -2,7 +2,7 @@ package com.sportmatch.profileservice.mapper;
 
 import com.sportmatch.profileservice.dto.request.ProfileRequest;
 import com.sportmatch.profileservice.dto.response.ProfileResponse;
-import com.sportmatch.profileservice.entity.Profile;
+import com.sportmatch.profileservice.model.Profile;
 import org.mapstruct.*;
 
 import java.time.LocalDateTime;

@@ -1,0 +1,27 @@
+server:
+  port: 8105
+
+spring:
+  application:
+    name: api-gateway
+
+  cloud:
+    gateway:
+      server:
+        webmvc:
+          routes:
+            - id: profile-service
+              uri: lb://profile-service
+              predicates:
+                - Path=/api/profiles/**
+
+  security:
+    oauth2:
+      resource server:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/sportmatch
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka

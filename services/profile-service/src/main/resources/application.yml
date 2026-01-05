@@ -18,6 +18,13 @@ spring:
     enabled: true
     baseline-on-migrate: true
     locations: classpath:db/migration
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/sportmatch
+          jwk-set-uri: http://localhost:8080/realms/sportmatch/protocol/openid-connect/certs
+
 eureka:
   client:
     service-url:

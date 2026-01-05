@@ -1,11 +1,11 @@
 package com.sportmatch.profileservice.service;
 
-import com.sportmatch.profileservice.common.constants.MessageConstant;
+import com.sportmatch.commonlibrary.exception.AlreadyExistsException;
+import com.sportmatch.commonlibrary.exception.NotFoundException;
+import com.sportmatch.profileservice.constants.MessageConstant;
 import com.sportmatch.profileservice.dto.request.ProfileRequest;
 import com.sportmatch.profileservice.dto.response.ProfileResponse;
-import com.sportmatch.profileservice.entity.Profile;
-import com.sportmatch.profileservice.exception.ProfileAlreadyExistsException;
-import com.sportmatch.profileservice.exception.ProfileNotFoundException;
+import com.sportmatch.profileservice.model.Profile;
 import com.sportmatch.profileservice.mapper.ProfileMapper;
 import com.sportmatch.profileservice.repository.ProfileRepository;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +23,7 @@ public class ProfileService {
     @Transactional(readOnly = true)
     public Profile getProfileById(UUID id) {
         return profileRepository.findById(id)
-                .orElseThrow(() -> new ProfileNotFoundException(MessageConstant.PROFILE_NOT_FOUND));
+                .orElseThrow(() -> new NotFoundException(MessageConstant.PROFILE_NOT_FOUND));
     }
 
     @Transactional(readOnly = true)
@@ -35,7 +35,7 @@ public class ProfileService {
     @Transactional
     public Profile createProfile(Profile profile) {
         if (profileRepository.existsByUsername(profile.getUsername())) {
-            throw new ProfileAlreadyExistsException(MessageConstant.PROFILE_ALREADY_EXISTS);
+            throw new AlreadyExistsException(MessageConstant.PROFILE_ALREADY_EXISTS);
         }
         // send kafka event to match service to create a new profile
 

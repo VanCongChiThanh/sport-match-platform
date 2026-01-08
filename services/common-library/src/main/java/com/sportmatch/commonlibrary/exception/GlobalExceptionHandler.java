@@ -1,8 +1,10 @@
 package com.sportmatch.commonlibrary.exception;
 
 import com.sportmatch.commonlibrary.dto.ErrorResponse;
-import com.sportmatch.commonlibrary.utils.CommonFunction;
+import com.sportmatch.commonlibrary.error.ErrorMessageResolver;
+import com.sportmatch.commonlibrary.utils.StringUtils;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.NonNull;
 import org.apache.coyote.BadRequestException;
 import org.springframework.http.HttpHeaders;
@@ -27,30 +29,35 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     private static final String SERVER_ERROR_CODE = "ERR.SERVER";
 
     @ExceptionHandler(NotFoundException.class)
-    public ResponseEntity<ErrorResponse> profileNotFoundException(
+    public ResponseEntity<ErrorResponse> notFoundException(
             NotFoundException ex) {
-        ErrorResponse error = CommonFunction.getExceptionError(ex.getMessage());
+        ErrorResponse error = ErrorMessageResolver.getExceptionError(ex.getMessage());
         return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
     }
     @ExceptionHandler(AlreadyExistsException.class)
-    public ResponseEntity<ErrorResponse> profileAlreadyExistsException(
+    public ResponseEntity<ErrorResponse> alreadyExistsException(
             AlreadyExistsException ex) {
-        ErrorResponse error = CommonFunction.getExceptionError(ex.getMessage());
+        ErrorResponse error = ErrorMessageResolver.getExceptionError(ex.getMessage());
         return new ResponseEntity<>(error, HttpStatus.CONFLICT);
     }
-
+    @ExceptionHandler(ForbiddenException.class)
+    public ResponseEntity<ErrorResponse> forbiddenException(
+            ForbiddenException ex, HttpServletRequest request) {
+        ErrorResponse error = ErrorMessageResolver.getExceptionError(ex.getMessage());
+        return new ResponseEntity<>(error, HttpStatus.FORBIDDEN);
+    }
 
     @ExceptionHandler(BadRequestException.class)
     public ResponseEntity<ErrorResponse> badRequestException(
             BadRequestException ex) {
-        ErrorResponse error = CommonFunction.getExceptionError(ex.getMessage());
+        ErrorResponse error = ErrorMessageResolver.getExceptionError(ex.getMessage());
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
 
 
     @ExceptionHandler(ServerError.class)
     public ResponseEntity<ErrorResponse> serverError(ServerError ex) {
-        ErrorResponse error = CommonFunction.getExceptionError(ex.getMessage());
+        ErrorResponse error = ErrorMessageResolver.getExceptionError(ex.getMessage());
         return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
@@ -95,11 +102,11 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
             @NonNull WebRequest request) {
         List<ObjectError> listError = ex.getBindingResult().getAllErrors();
         ObjectError objectError = listError.get(listError.size() - 1);
-        String error = CommonFunction.convertToSnakeCase(Objects.requireNonNull(objectError.getCode()));
-        String fieldName = CommonFunction.convertToSnakeCase(((FieldError) objectError).getField());
-        String resource = CommonFunction.convertToSnakeCase(objectError.getObjectName());
+        String error = StringUtils.toSnakeCase(Objects.requireNonNull(objectError.getCode()));
+        String fieldName = StringUtils.toSnakeCase(((FieldError) objectError).getField());
+        String resource = StringUtils.toSnakeCase(objectError.getObjectName());
 
-        ErrorResponse errorResponse = CommonFunction.getValidationError(resource, fieldName, error);
+        ErrorResponse errorResponse = ErrorMessageResolver.getValidationError(resource, fieldName, error);
 
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }

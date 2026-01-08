@@ -1,0 +1,5 @@
+profile_request:
+  username:
+    not_blank:
+      code: UN_BLANK
+      message: Username cannot be blank

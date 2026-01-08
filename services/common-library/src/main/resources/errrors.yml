@@ -1,0 +1,13 @@
+#Common
+internal_server_error:
+  code: ERR.SER0101
+  message: Internal server error!
+page_not_found:
+  code: ERR.SER0102
+  message: Page was not found!
+forbidden_error:
+  code: ERR.AUTH0101
+  message: Access Denied You don’t have permission to access!
+unauthorized:
+  code: ERR.AUTH0102
+  message: You do not have permission to access this page!

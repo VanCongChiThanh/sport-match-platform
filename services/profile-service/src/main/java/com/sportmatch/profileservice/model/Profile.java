@@ -1,33 +1,25 @@
 package com.sportmatch.profileservice.model;
 
+import com.sportmatch.commonlibrary.model.AbstractEntity;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Data
-@Builder
+
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 @Entity
-@Table(
-        name = "profile",
-        uniqueConstraints = {
-                @UniqueConstraint(columnNames = "user_id"),
-                @UniqueConstraint(columnNames = "username")
-        }
-)
-public class Profile {
+@Table(name = "profile")
+public class Profile extends AbstractEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(nullable = false, updatable = false)
+    @Column(name = "user_id",nullable = false, updatable = false,unique = true)
     private UUID userId;
 
     @Column(nullable = false, unique = true)
@@ -42,17 +34,4 @@ public class Profile {
     private String coverPictureUrl;
     private String location;
 
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
-
-    @PrePersist
-    void onCreate() {
-        createdAt = LocalDateTime.now();
-        updatedAt = createdAt;
-    }
-
-    @PreUpdate
-    void onUpdate() {
-        updatedAt = LocalDateTime.now();
-    }
 }

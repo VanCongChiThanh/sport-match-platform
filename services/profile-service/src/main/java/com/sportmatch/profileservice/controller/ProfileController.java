@@ -28,12 +28,11 @@ public class ProfileController {
         return ResponseEntity.status(HttpStatus.CREATED).body( profileService.createProfileFromRequest(request));
     }
 
-    @PatchMapping("/profiles/{id}")
+    @PatchMapping("/profiles/me")
     public ResponseEntity<ProfileResponse> updateProfile(
-            @PathVariable UUID id,
             @RequestBody ProfileRequest request
     ) {
-        return ResponseEntity.ok(profileService.updateProfileFromRequest(id, request));
+        return ResponseEntity.ok(profileService.updateMyProfile(request));
     }
 
 }

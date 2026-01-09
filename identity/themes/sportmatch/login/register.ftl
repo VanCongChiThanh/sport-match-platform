@@ -1,6 +1,6 @@
 <#import "template.ftl" as layout>
 
-<@layout>
+<@layout.layout>
     <form action="${url.registrationAction}" method="post">
 
         <div class="form-group">
@@ -49,4 +49,4 @@
         </div>
 
     </form>
-</@layout>
+</@layout.layout>

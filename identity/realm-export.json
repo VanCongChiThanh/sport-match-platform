@@ -1,0 +1,46 @@
+{
+  "realm": "sportmatch",
+  "enabled": true,
+
+  "roles": {
+    "realm": [
+      { "name": "ADMIN" },
+      { "name": "USER" },
+      { "name": "PLAYER" },
+      { "name": "MODERATOR" }
+    ]
+  },
+
+  "clients": [
+    {
+      "clientId": "sportmatch",
+      "name": "SportMatch API",
+      "protocol": "openid-connect",
+      "publicClient": false,
+      "serviceAccountsEnabled": true,
+      "directAccessGrantsEnabled": true,
+      "standardFlowEnabled": true,
+      "redirectUris": [
+        "http://localhost:3000/*"
+      ],
+      "webOrigins": [
+        "+"
+      ],
+
+      "protocolMappers": [
+        {
+          "name": "client roles",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usermodel-client-role-mapper",
+          "consentRequired": false,
+          "config": {
+            "client.id": "sportmatch",
+            "claim.name": "resource_access.sportmatch.roles",
+            "jsonType.label": "String",
+            "multivalued": "true"
+          }
+        }
+      ]
+    }
+  ]
+}

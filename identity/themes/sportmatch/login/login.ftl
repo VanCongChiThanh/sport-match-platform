@@ -1,6 +1,6 @@
 <#import "template.ftl" as layout>
 
-<@layout>
+<@layout.layout>
     <form action="${url.loginAction}" method="post">
 
         <div class="form-group">
@@ -26,4 +26,4 @@
         </#if>
 
     </form>
-</@layout>
+</@layout.layout>

@@ -1,3 +1,4 @@
+<#macro layout>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,3 +23,4 @@
 </div>
 </body>
 </html>
+</#macro>

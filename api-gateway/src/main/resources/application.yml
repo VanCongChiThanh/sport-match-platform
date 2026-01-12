@@ -7,17 +7,21 @@ spring:
 
   cloud:
     gateway:
-      server:
-        webmvc:
-          routes:
-            - id: profile-service
-              uri: lb://profile-service
-              predicates:
-                - Path=/api/profiles/**
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: profile-service
+          uri: lb://profile-service
+          predicates:
+            - Path=/api/profiles/**
+          filters:
+            - StripPrefix=1
 
   security:
     oauth2:
-      resource server:
+      resourceserver:
         jwt:
           issuer-uri: http://localhost:8080/realms/sportmatch
 

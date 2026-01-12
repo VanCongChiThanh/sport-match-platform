@@ -43,7 +43,13 @@ public class SecurityConfig {
     public JwtAuthenticationConverter jwtAuthenticationConverterForKeycloak() {
         Converter<Jwt, Collection<GrantedAuthority>> jwtGrantedAuthoritiesConverter = jwt -> {
             Map<String, Collection<String>> realmAccess = jwt.getClaim("realm_access");
+            if (realmAccess == null) {
+                return java.util.Collections.emptyList();
+            }
             Collection<String> roles = realmAccess.get("roles");
+            if (roles == null) {
+                return java.util.Collections.emptyList();
+            }
             return roles.stream()
                 .map(role -> new SimpleGrantedAuthority("ROLE_" + role))
                 .collect(Collectors.toList());

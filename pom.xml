@@ -15,7 +15,7 @@
         <java.version>17</java.version>
 
         <!-- LOCK VERSION -->
-        <spring.boot.version>3.5.0</spring.boot.version>
+        <spring.boot.version>3.4.1</spring.boot.version>
         <spring.cloud.version>2024.0.1</spring.cloud.version>
 
         <mapstruct.version>1.5.5.Final</mapstruct.version>

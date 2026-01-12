@@ -23,6 +23,20 @@ spring:
       resourceserver:
         jwt:
           issuer-uri: http://localhost:8080/realms/sportmatch
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json.add.type.headers: false
+    consumer:
+      group-id: profile-service
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: com.sportmatch.*
 
 server:
   port: 8081
@@ -36,3 +50,11 @@ eureka:
   instance:
     hostname: localhost
     prefer-ip-address: true
+
+# Kafka topics
+kafka:
+  topics:
+    profile-created: profile-created
+    profile-updated: profile-updated
+    profile-deleted: profile-deleted
+    user-registered: user-registered

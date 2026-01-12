@@ -16,6 +16,9 @@ public final class ErrorMessageResolver {
     public static ErrorResponse getExceptionError(String error) {
         Map<String, Object> errors = YamlUtils.loadYaml(ERROR_FILE);
         Map<String, Object> objError = (Map<String, Object>) errors.get(error);
+        if (objError == null) {
+            return new ErrorResponse("ERR.UNKNOWN", error);
+        }
         String code = (String) objError.get("code");
         String message = (String) objError.get("message");
         return new ErrorResponse(code, message);

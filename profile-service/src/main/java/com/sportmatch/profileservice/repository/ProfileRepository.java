@@ -1,6 +1,8 @@
 package com.sportmatch.profileservice.repository;
 
 import com.sportmatch.profileservice.model.Profile;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -11,5 +13,7 @@ import java.util.UUID;
 public interface ProfileRepository extends JpaRepository<Profile, UUID> {
     boolean existsByUsername(String username);
 
-    Optional<Profile> findByUserId(UUID id);
+    Optional<Profile> findByUserId(UUID userId);
+
+    Page<Profile> findByUsernameContainingIgnoreCase(String username, Pageable pageable);
 }

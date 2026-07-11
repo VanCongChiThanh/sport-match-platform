@@ -19,7 +19,8 @@ public class SecurityConfig {
                 .authorizeExchange(exchanges -> exchanges
                         // public endpoints
                         .pathMatchers(
-                                "/swagger-ui/**"
+                                "/swagger-ui/**",
+                                "/actuator/health/**"
                         ).permitAll()
                         // all api
                         .pathMatchers("/api/**").authenticated()

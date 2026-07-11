@@ -4,24 +4,16 @@ import com.sportmatch.commonlibrary.security.entrypoint.RestAuthenticationEntryP
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.convert.converter.Converter;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
 import org.springframework.security.web.SecurityFilterChain;
-
-import java.util.Collection;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 @Configuration
 @RequiredArgsConstructor
 public class SecurityConfig {
 
     private final RestAuthenticationEntryPoint authenticationEntryPoint;
+    private final JwtAuthenticationConverter jwtAuthenticationConverter;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -29,6 +21,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
                                 "/swagger-ui/**",
+                                "/actuator/health/**",
                                 "/error"
                         ).permitAll()
                         .requestMatchers(
@@ -41,7 +34,7 @@ public class SecurityConfig {
                         .anyRequest().authenticated()
                 )
             .oauth2ResourceServer(oauth2 -> oauth2
-                .jwt(Customizer.withDefaults())
+                .jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter))
                 .authenticationEntryPoint(authenticationEntryPoint)
             )
             .exceptionHandling(ex -> ex
@@ -50,25 +43,4 @@ public class SecurityConfig {
             .build();
     }
 
-    @Bean
-    public JwtAuthenticationConverter jwtAuthenticationConverterForKeycloak() {
-        Converter<Jwt, Collection<GrantedAuthority>> jwtGrantedAuthoritiesConverter = jwt -> {
-            Map<String, Collection<String>> realmAccess = jwt.getClaim("realm_access");
-            if (realmAccess == null) {
-                return java.util.Collections.emptyList();
-            }
-            Collection<String> roles = realmAccess.get("roles");
-            if (roles == null) {
-                return java.util.Collections.emptyList();
-            }
-            return roles.stream()
-                .map(role -> new SimpleGrantedAuthority("ROLE_" + role))
-                .collect(Collectors.toList());
-        };
-
-        var jwtAuthenticationConverter = new JwtAuthenticationConverter();
-        jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(jwtGrantedAuthoritiesConverter);
-
-        return jwtAuthenticationConverter;
-    }
 }

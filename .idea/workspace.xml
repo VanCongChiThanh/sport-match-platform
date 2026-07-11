@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d2590ee2-8907-412b-bc5b-0fba899b85a5" name="Changes" comment="feat(common-library, profile-service): add centralized authentication entry-point and JSON utility&#10;&#10;- Added `RestAuthenticationEntryPoint` in `common-library` to handle unauthorized access responses.&#10;- Introduced `JsonUtils` in `common-library` for JSON conversion utility.&#10;- Updated `ProfileServiceApplication` and `SecurityConfig` in `profile-service` to integrate `RestAuthenticationEntryPoint`. &#10;- Enabled component scanning for `common-library` in `profile-service`." />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="EmbeddingIndexingInfo">
+    <option name="cachedIndexableFilesCount" value="95" />
+    <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;VanCongChiThanh&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/VanCongChiThanh/sport-match-platform.git&quot;,
+    &quot;accountId&quot;: &quot;fc6b4f40-e76e-4513-8c7a-82a7f00adbdd&quot;
+  }
+}</component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="380AXEUw6p1PHteQM2I9m6ISHCF" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Maven.discovery-service [clean].executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;Spring Boot.ApiGatewayApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.DiscoveryServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.ProfileServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/SPRING REST API/sport-match-platform/identity/themes/sportmatch/META-INF&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.poratu.idea.plugins.tomcat.setting.TomcatServersConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\SPRING REST API\sport-match-platform\identity\themes\sportmatch\META-INF" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\SPRING REST API\sport-match-platform\identity\themes\sportmatch\login" />
+      <recent name="D:\SPRING REST API\sport-match-platform\identity\themes\sportmatch" />
+      <recent name="D:\SPRING REST API\sport-match-platform\identity\themes" />
+      <recent name="D:\SPRING REST API\sport-match-platform\identity\themes\sportmatch\theme\sportmatch" />
+      <recent name="D:\SPRING REST API\sport-match-platform\identity\themes\sportmatch\theme\sportmatch\login" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="KtorApplicationConfigurationType" />
+        <option value="MicronautRunConfigurationType" />
+        <option value="QuarkusRunConfigurationType" />
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+    <option name="configurationStatuses">
+      <map>
+        <entry key="SpringBootApplicationConfigurationType">
+          <value>
+            <map>
+              <entry key="ApiGatewayApplication" value="STOPPED" />
+              <entry key="DiscoveryServiceApplication" value="STOPPED" />
+              <entry key="ProfileServiceApplication" value="STOPPED" />
+            </map>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.ApiGatewayApplication">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="sport-match-platform" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="sport-match-platform" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+    <configuration name="ApiGatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="api-gateway" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.sportmatch.apigateway.ApiGatewayApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DiscoveryServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="discovery-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.sportmatch.discoveryservice.DiscoveryServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProfileServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="profile-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.sportmatch.profileservice.ProfileServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-26cb7f24e5b0-intellij.indexing.shared.core-IU-253.29346.138" />
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-IU-253.29346.138" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d2590ee2-8907-412b-bc5b-0fba899b85a5" name="Changes" comment="" />
+      <created>1767926151935</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1767926151935</updated>
+      <workItem from="1767926153190" duration="13000" />
+      <workItem from="1767926382040" duration="9000" />
+      <workItem from="1767926635432" duration="75000" />
+      <workItem from="1767926721703" duration="6327000" />
+      <workItem from="1767940175223" duration="9206000" />
+      <workItem from="1768009436441" duration="4760000" />
+      <workItem from="1768027841928" duration="1216000" />
+      <workItem from="1768180997225" duration="1293000" />
+      <workItem from="1768183923070" duration="4818000" />
+      <workItem from="1768191487772" duration="72000" />
+      <workItem from="1768199601740" duration="95000" />
+      <workItem from="1768199923558" duration="2091000" />
+      <workItem from="1768266132893" duration="2436000" />
+      <workItem from="1772419453169" duration="601000" />
+    </task>
+    <task id="LOCAL-00001" summary="refactor(build): add parent pom, standardize dependency versions and clean up common-library">
+      <option name="closed" value="true" />
+      <created>1767928933757</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1767928933758</updated>
+    </task>
+    <task id="LOCAL-00002" summary="feat : identity themes">
+      <option name="closed" value="true" />
+      <created>1767930843791</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1767930843791</updated>
+    </task>
+    <task id="LOCAL-00003" summary="`refactor(identity): update sportmatch theme and restructure realm configuration`">
+      <option name="closed" value="true" />
+      <created>1767952451927</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1767952451927</updated>
+    </task>
+    <task id="LOCAL-00004" summary="feat(profile-service): add Kafka integration, REST APIs, and docker-compose setup&#10;&#10;- Introduced Kafka support (producers, consumers, and configuration) in `profile-service`.&#10;- Added REST APIs for CRUD operations and profile search with pagination.&#10;- Implemented health checks for PostgreSQL, Keycloak, Kafka, and Kafka UI.&#10;- Introduced `ProfileUpdateRequest` DTO and updated request handling with validation.&#10;- Updated `docker-compose.yml` to set up PostgreSQL, Keycloak, Kafka, and Kafka UI.&#10;- Refactored error handling and mapper logic to support new features.">
+      <option name="closed" value="true" />
+      <created>1768191537796</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1768191537796</updated>
+    </task>
+    <task id="LOCAL-00005" summary="feat(common-library, profile-service): add centralized authentication entry-point and JSON utility&#10;&#10;- Added `RestAuthenticationEntryPoint` in `common-library` to handle unauthorized access responses.&#10;- Introduced `JsonUtils` in `common-library` for JSON conversion utility.&#10;- Updated `ProfileServiceApplication` and `SecurityConfig` in `profile-service` to integrate `RestAuthenticationEntryPoint`. &#10;- Enabled component scanning for `common-library` in `profile-service`.">
+      <option name="closed" value="true" />
+      <created>1768200713793</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1768200713793</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="refactor(build): add parent pom, standardize dependency versions and clean up common-library" />
+    <MESSAGE value="feat : identity themes" />
+    <MESSAGE value="fix : " />
+    <MESSAGE value="`refactor(identity): update sportmatch theme and restructure realm configuration`" />
+    <MESSAGE value="chore : " />
+    <MESSAGE value="chore" />
+    <MESSAGE value="feat(profile-service): add Kafka integration, REST APIs, and docker-compose setup&#10;&#10;- Introduced Kafka support (producers, consumers, and configuration) in `profile-service`.&#10;- Added REST APIs for CRUD operations and profile search with pagination.&#10;- Implemented health checks for PostgreSQL, Keycloak, Kafka, and Kafka UI.&#10;- Introduced `ProfileUpdateRequest` DTO and updated request handling with validation.&#10;- Updated `docker-compose.yml` to set up PostgreSQL, Keycloak, Kafka, and Kafka UI.&#10;- Refactored error handling and mapper logic to support new features." />
+    <MESSAGE value="feat(common-library, profile-service): add centralized authentication entry-point and JSON utility&#10;&#10;- Added `RestAuthenticationEntryPoint` in `common-library` to handle unauthorized access responses.&#10;- Introduced `JsonUtils` in `common-library` for JSON conversion utility.&#10;- Updated `ProfileServiceApplication` and `SecurityConfig` in `profile-service` to integrate `RestAuthenticationEntryPoint`. &#10;- Enabled component scanning for `common-library` in `profile-service`." />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(common-library, profile-service): add centralized authentication entry-point and JSON utility&#10;&#10;- Added `RestAuthenticationEntryPoint` in `common-library` to handle unauthorized access responses.&#10;- Introduced `JsonUtils` in `common-library` for JSON conversion utility.&#10;- Updated `ProfileServiceApplication` and `SecurityConfig` in `profile-service` to integrate `RestAuthenticationEntryPoint`. &#10;- Enabled component scanning for `common-library` in `profile-service`." />
+  </component>
+</project>

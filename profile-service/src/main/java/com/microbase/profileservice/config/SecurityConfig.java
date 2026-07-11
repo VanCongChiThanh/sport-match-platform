@@ -1,46 +1,28 @@
 package com.microbase.profileservice.config;
 
-import com.microbase.commonlibrary.security.entrypoint.RestAuthenticationEntryPoint;
+import com.microbase.commonlibrary.security.ResourceServerSecurityConfigurer;
+import com.microbase.commonlibrary.security.SecurityConstants;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
+@EnableMethodSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-    private final RestAuthenticationEntryPoint authenticationEntryPoint;
-    private final JwtAuthenticationConverter jwtAuthenticationConverter;
+    private final ResourceServerSecurityConfigurer resourceServerSecurityConfigurer;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        return http
+        return resourceServerSecurityConfigurer.applyDefaults(http)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(
-                                "/swagger-ui/**",
-                                "/actuator/health/**",
-                                "/error"
-                        ).permitAll()
-                        .requestMatchers(
-                                "/profiles/me",
-                                "/profiles/me/**"
-                        ).authenticated()
-                        .requestMatchers(
-                                "/profiles/**"
-                        ).hasRole("ADMIN")
+                        .requestMatchers(SecurityConstants.DEFAULT_PUBLIC_ENDPOINTS).permitAll()
                         .anyRequest().authenticated()
                 )
-            .oauth2ResourceServer(oauth2 -> oauth2
-                .jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter))
-                .authenticationEntryPoint(authenticationEntryPoint)
-            )
-            .exceptionHandling(ex -> ex
-                .authenticationEntryPoint(authenticationEntryPoint)
-            )
-            .build();
+                .build();
     }
-
 }

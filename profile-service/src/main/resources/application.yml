@@ -2,7 +2,7 @@ spring:
   application:
     name: profile-service
   datasource:
-    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/sportmatch_profile_db}
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/microbase_profile_db}
     username: ${SPRING_DATASOURCE_USERNAME:postgres}
     password: ${SPRING_DATASOURCE_PASSWORD:12345Thanh}
     driver-class-name: org.postgresql.Driver
@@ -22,7 +22,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: ${KEYCLOAK_ISSUER_URI:http://localhost:8080/realms/sportmatch}
+          issuer-uri: ${KEYCLOAK_ISSUER_URI:http://localhost:8080/realms/microbase}
   kafka:
     bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
     producer:
@@ -36,7 +36,7 @@ spring:
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
-        spring.json.trusted.packages: com.sportmatch.*
+        spring.json.trusted.packages: com.microbase.*
 
 server:
   port: ${SERVER_PORT:8081}

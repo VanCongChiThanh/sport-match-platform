@@ -8,8 +8,8 @@
 
     <!-- ================= PARENT ================= -->
     <parent>
-        <groupId>com.sportmatch</groupId>
-        <artifactId>sportmatch-parent</artifactId>
+        <groupId>com.microbase</groupId>
+        <artifactId>microbase-parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
@@ -17,7 +17,7 @@
     <!-- ================= PROJECT INFO ================= -->
     <artifactId>profile-service</artifactId>
     <name>profile-service</name>
-    <description>Profile Service - SportMatch Platform</description>
+    <description>Profile Service - Microservice Base</description>
 
     <!-- ================= PROPERTIES ================= -->
     <properties>
@@ -115,7 +115,7 @@
 
         <!-- Common Library -->
         <dependency>
-            <groupId>com.sportmatch</groupId>
+            <groupId>com.microbase</groupId>
             <artifactId>common-library</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>

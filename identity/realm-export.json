@@ -1,5 +1,5 @@
 {
-  "realm": "sportmatch",
+  "realm": "microbase",
   "enabled": true,
 
   "roles": {
@@ -13,8 +13,8 @@
 
   "clients": [
     {
-      "clientId": "sportmatch",
-      "name": "SportMatch API",
+      "clientId": "microbase",
+      "name": "MicroBase API",
       "protocol": "openid-connect",
       "publicClient": false,
       "serviceAccountsEnabled": true,
@@ -34,8 +34,8 @@
           "protocolMapper": "oidc-usermodel-client-role-mapper",
           "consentRequired": false,
           "config": {
-            "client.id": "sportmatch",
-            "claim.name": "resource_access.sportmatch.roles",
+            "client.id": "microbase",
+            "claim.name": "resource_access.microbase.roles",
             "jsonType.label": "String",
             "multivalued": "true"
           }

@@ -8,12 +8,12 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 12345Thanh
-      POSTGRES_MULTIPLE_DATABASES: sportmatch_profile_db,keycloak
+      POSTGRES_MULTIPLE_DATABASES: microbase_profile_db,keycloak
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./docker/postgres/init-multiple-databases.sh:/docker-entrypoint-initdb.d/init-multiple-databases.sh
     networks:
-      - sportmatch-network
+      - microbase-network
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 10s
@@ -35,13 +35,13 @@ services:
       KC_DB_PASSWORD: 12345Thanh
       KC_HEALTH_ENABLED: true
     volumes:
-      - ./identity/themes/sportmatch:/opt/keycloak/themes/sportmatch:ro
+      - ./identity/themes/microbase:/opt/keycloak/themes/microbase:ro
     command: start-dev
     depends_on:
       postgres:
         condition: service_healthy
     networks:
-      - sportmatch-network
+      - microbase-network
 
   # Kafka with KRaft mode (no Zookeeper needed)
   kafka:
@@ -64,7 +64,7 @@ services:
       KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
       KAFKA_LOG_DIRS: /tmp/kraft-combined-logs
     networks:
-      - sportmatch-network
+      - microbase-network
 
   discovery-service:
     build:
@@ -75,7 +75,7 @@ services:
     depends_on:
       - keycloak
     networks:
-      - sportmatch-network
+      - microbase-network
 
   api-gateway:
     build:
@@ -85,12 +85,12 @@ services:
       - "8105:8105"
     environment:
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery-service:8761/eureka
-      KEYCLOAK_ISSUER_URI: http://keycloak:8080/realms/sportmatch
+      KEYCLOAK_ISSUER_URI: http://keycloak:8080/realms/microbase
     depends_on:
       - discovery-service
       - keycloak
     networks:
-      - sportmatch-network
+      - microbase-network
 
   profile-service:
     build:
@@ -99,12 +99,12 @@ services:
     ports:
       - "8081:8081"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/sportmatch_profile_db
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/microbase_profile_db
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: 12345Thanh
       SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery-service:8761/eureka
-      KEYCLOAK_ISSUER_URI: http://keycloak:8080/realms/sportmatch
+      KEYCLOAK_ISSUER_URI: http://keycloak:8080/realms/microbase
     depends_on:
       postgres:
         condition: service_healthy
@@ -115,7 +115,7 @@ services:
       keycloak:
         condition: service_started
     networks:
-      - sportmatch-network
+      - microbase-network
 
   # Kafka UI - Web interface to manage Kafka
   kafka-ui:
@@ -129,11 +129,11 @@ services:
     depends_on:
       - kafka
     networks:
-      - sportmatch-network
+      - microbase-network
 
 volumes:
   postgres_data:
 
 networks:
-  sportmatch-network:
+  microbase-network:
     driver: bridge

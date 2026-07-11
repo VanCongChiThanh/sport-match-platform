@@ -5,8 +5,8 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.sportmatch</groupId>
-    <artifactId>sportmatch-parent</artifactId>
+    <groupId>com.microbase</groupId>
+    <artifactId>microbase-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 

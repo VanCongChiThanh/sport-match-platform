@@ -1,5 +1,6 @@
 package com.microbase.profileservice.kafka.producer;
 
+import com.microbase.commonlibrary.messaging.DomainEvent;
 import com.microbase.profileservice.model.Profile;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -7,17 +8,16 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Kafka producer for publishing profile events
- */
 @Slf4j
 @Service
 @RequiredArgsConstructor
 public class ProfileProducer {
+
+    private static final String SOURCE = "profile-service";
+    private static final String AGGREGATE_TYPE = "profile";
 
     private final KafkaTemplate<String, Object> kafkaTemplate;
 
@@ -31,41 +31,38 @@ public class ProfileProducer {
     private String profileDeletedTopic;
 
     public void sendProfileCreatedEvent(Profile profile) {
-        Map<String, Object> event = buildProfileEvent(profile);
-        event.put("eventType", "PROFILE_CREATED");
-        event.put("createdAt", LocalDateTime.now().toString());
-
+        DomainEvent<Map<String, Object>> event = buildEvent("profile.created", profile, buildProfilePayload(profile));
         kafkaTemplate.send(profileCreatedTopic, profile.getId().toString(), event);
-        log.info("Published ProfileCreatedEvent for profile: {}", profile.getId());
+        log.info("Published {} event for profile: {}", event.eventType(), profile.getId());
     }
 
     public void sendProfileUpdatedEvent(Profile profile) {
-        Map<String, Object> event = buildProfileEvent(profile);
-        event.put("eventType", "PROFILE_UPDATED");
-        event.put("updatedAt", LocalDateTime.now().toString());
-
+        DomainEvent<Map<String, Object>> event = buildEvent("profile.updated", profile, buildProfilePayload(profile));
         kafkaTemplate.send(profileUpdatedTopic, profile.getId().toString(), event);
-        log.info("Published ProfileUpdatedEvent for profile: {}", profile.getId());
+        log.info("Published {} event for profile: {}", event.eventType(), profile.getId());
     }
 
     public void sendProfileDeletedEvent(Profile profile) {
-        Map<String, Object> event = new HashMap<>();
-        event.put("profileId", profile.getId().toString());
-        event.put("userId", profile.getUserId().toString());
-        event.put("eventType", "PROFILE_DELETED");
-        event.put("deletedAt", LocalDateTime.now().toString());
+        Map<String, Object> payload = new HashMap<>();
+        payload.put("profileId", profile.getId().toString());
+        payload.put("userId", profile.getUserId().toString());
 
+        DomainEvent<Map<String, Object>> event = buildEvent("profile.deleted", profile, payload);
         kafkaTemplate.send(profileDeletedTopic, profile.getId().toString(), event);
-        log.info("Published ProfileDeletedEvent for profile: {}", profile.getId());
+        log.info("Published {} event for profile: {}", event.eventType(), profile.getId());
     }
 
-    private Map<String, Object> buildProfileEvent(Profile profile) {
-        Map<String, Object> event = new HashMap<>();
-        event.put("profileId", profile.getId().toString());
-        event.put("userId", profile.getUserId().toString());
-        event.put("username", profile.getUsername());
-        event.put("fullName", profile.getFullName());
-        event.put("location", profile.getLocation());
-        return event;
+    private DomainEvent<Map<String, Object>> buildEvent(String eventType, Profile profile, Map<String, Object> payload) {
+        return DomainEvent.of(eventType, AGGREGATE_TYPE, profile.getId().toString(), SOURCE, payload);
+    }
+
+    private Map<String, Object> buildProfilePayload(Profile profile) {
+        Map<String, Object> payload = new HashMap<>();
+        payload.put("profileId", profile.getId().toString());
+        payload.put("userId", profile.getUserId().toString());
+        payload.put("username", profile.getUsername());
+        payload.put("fullName", profile.getFullName());
+        payload.put("location", profile.getLocation());
+        return payload;
     }
 }

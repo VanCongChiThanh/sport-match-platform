@@ -25,7 +25,13 @@ public class RestAccessDeniedHandler implements AccessDeniedHandler {
         response.setStatus(HttpServletResponse.SC_FORBIDDEN);
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
-        ErrorResponse error = ErrorMessageResolver.getExceptionError(MessageConstant.FORBIDDEN_ERROR);
+        ErrorResponse resolvedError = ErrorMessageResolver.getExceptionError(MessageConstant.FORBIDDEN_ERROR);
+        ErrorResponse error = ErrorResponse.of(
+                resolvedError.code(),
+                resolvedError.message(),
+                HttpServletResponse.SC_FORBIDDEN,
+                request.getRequestURI()
+        );
         response.getWriter().write(Objects.requireNonNull(JsonUtils.convertJsonToString(error)));
     }
 }

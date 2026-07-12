@@ -2,7 +2,7 @@ package com.microbase.profileservice.service;
 
 import com.microbase.commonlibrary.exception.AlreadyExistsException;
 import com.microbase.commonlibrary.exception.NotFoundException;
-import com.microbase.commonlibrary.utils.AuthenticationUtils;
+import com.microbase.commonlibrary.security.CurrentUserProvider;
 import com.microbase.profileservice.constants.MessageConstant;
 import com.microbase.profileservice.dto.request.ProfileRequest;
 import com.microbase.profileservice.dto.request.ProfileUpdateRequest;
@@ -27,6 +27,7 @@ public class ProfileService {
     private final ProfileRepository profileRepository;
     private final ProfileMapper profileMapper;
     private final ProfileProducer profileProducer;
+    private final CurrentUserProvider currentUserProvider;
 
     // ==================== READ OPERATIONS ====================
 
@@ -56,7 +57,7 @@ public class ProfileService {
 
     @Transactional(readOnly = true)
     public ProfileResponse getMyProfile() {
-        UUID userId = UUID.fromString(AuthenticationUtils.extractUserId());
+        UUID userId = currentUserProvider.getCurrentUserId();
         return getProfileResponseByUserId(userId);
     }
 
@@ -91,7 +92,7 @@ public class ProfileService {
 
     @Transactional
     public ProfileResponse createProfileFromRequest(ProfileRequest request) {
-        UUID userId = UUID.fromString(AuthenticationUtils.extractUserId());
+        UUID userId = currentUserProvider.getCurrentUserId();
 
         // Check if profile already exists for this user
         if (profileRepository.findByUserId(userId).isPresent()) {
@@ -109,7 +110,7 @@ public class ProfileService {
 
     @Transactional
     public ProfileResponse updateMyProfile(ProfileUpdateRequest request) {
-        UUID userId = UUID.fromString(AuthenticationUtils.extractUserId());
+        UUID userId = currentUserProvider.getCurrentUserId();
         Profile existingProfile = getProfileByUserId(userId);
 
         profileMapper.updateProfileFromRequest(request, existingProfile);

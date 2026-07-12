@@ -1,5 +1,6 @@
 package com.microbase.profileservice.controller;
 
+import com.microbase.commonlibrary.dto.PageResponse;
 import com.microbase.commonlibrary.security.SecurityExpressions;
 import com.microbase.profileservice.dto.request.ProfileRequest;
 import com.microbase.profileservice.dto.request.ProfileUpdateRequest;
@@ -7,7 +8,6 @@ import com.microbase.profileservice.dto.response.ProfileResponse;
 import com.microbase.profileservice.service.ProfileService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
@@ -48,11 +48,11 @@ public class ProfileController {
 
     @PreAuthorize(SecurityExpressions.USER_OR_ADMIN)
     @GetMapping("/search")
-    public ResponseEntity<Page<ProfileResponse>> searchProfiles(
+    public ResponseEntity<PageResponse<ProfileResponse>> searchProfiles(
             @RequestParam String username,
             @PageableDefault(size = 20) Pageable pageable
     ) {
-        return ResponseEntity.ok(profileService.searchByUsername(username, pageable));
+        return ResponseEntity.ok(PageResponse.from(profileService.searchByUsername(username, pageable)));
     }
 
     @PreAuthorize(SecurityExpressions.IS_ADMIN)
@@ -63,10 +63,10 @@ public class ProfileController {
 
     @PreAuthorize(SecurityExpressions.IS_ADMIN)
     @GetMapping
-    public ResponseEntity<Page<ProfileResponse>> getAllProfiles(
+    public ResponseEntity<PageResponse<ProfileResponse>> getAllProfiles(
             @PageableDefault(size = 20) Pageable pageable
     ) {
-        return ResponseEntity.ok(profileService.getAllProfiles(pageable));
+        return ResponseEntity.ok(PageResponse.from(profileService.getAllProfiles(pageable)));
     }
 
     @PreAuthorize(SecurityExpressions.USER_OR_ADMIN)

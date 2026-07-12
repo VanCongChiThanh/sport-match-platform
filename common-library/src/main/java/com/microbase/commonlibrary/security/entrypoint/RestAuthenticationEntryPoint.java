@@ -6,7 +6,6 @@ import com.microbase.commonlibrary.error.ErrorMessageResolver;
 import com.microbase.commonlibrary.utils.JsonUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
@@ -14,22 +13,25 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.util.Objects;
 
-@Slf4j
 @Component
 public class RestAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
     @Override
     public void commence(
-            HttpServletRequest httpServletRequest,
-            HttpServletResponse httpServletResponse,
-            AuthenticationException e)
+            HttpServletRequest request,
+            HttpServletResponse response,
+            AuthenticationException exception)
             throws IOException {
-        httpServletResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-        httpServletResponse.setContentType("application/json");
-        httpServletResponse.setCharacterEncoding("UTF-8");
-        ErrorResponse error = ErrorMessageResolver.getExceptionError(MessageConstant.UNAUTHORIZED);
-        httpServletResponse
-                .getWriter()
-                .write(Objects.requireNonNull(JsonUtils.convertJsonToString(error)));
+        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        ErrorResponse resolvedError = ErrorMessageResolver.getExceptionError(MessageConstant.UNAUTHORIZED);
+        ErrorResponse error = ErrorResponse.of(
+                resolvedError.code(),
+                resolvedError.message(),
+                HttpServletResponse.SC_UNAUTHORIZED,
+                request.getRequestURI()
+        );
+        response.getWriter().write(Objects.requireNonNull(JsonUtils.convertJsonToString(error)));
     }
 }
